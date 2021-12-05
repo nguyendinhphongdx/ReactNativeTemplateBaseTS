@@ -3,11 +3,17 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/Ionicons';
 import ProfileScreen from '../../screens/profile';
 import ExploreScreen from '../../screens/explore';
 import HomeScreen from '../../screens/home';
 import DetailsScreen from '../../screens/detail';
+import {ConstantScreen, ConstantStack} from '../../config/constant';
+import {
+  HeaderBackLeft,
+  HeaderBarLeft,
+} from '../../components/headers/HeaderLeft';
+import { themeStack } from '../../theme/themeConfig';
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
@@ -17,48 +23,48 @@ const ExploreStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => (
-  <Tab.Navigator initialRouteName="HomeStack" activeColor="#fff">
+  <Tab.Navigator initialRouteName={ConstantStack.HOMESTACK} activeColor="#fff">
     <Tab.Screen
-      name="HomeStack"
+      name={ConstantStack.HOMESTACK}
       component={HomeStackScreen}
       options={{
-        tabBarLabel: 'Home',
-        tabBarColor: '#009387',
-        tabBarIcon: ({color}) => (
-          <FontAwesome5Icon name="chevron-right" color={color} size={26} />
+        tabBarLabel: themeStack.home.label,
+        tabBarColor: themeStack.home.color,
+        tabBarIcon: ({color}: {color: string}) => (
+          <Icon name="home" color={color} size={26} />
         ),
       }}
     />
     <Tab.Screen
-      name="NotificationsStack"
+      name={ConstantStack.NOTIFICATIONSTACK}
       component={DetailsStackScreen}
       options={{
-        tabBarLabel: 'Updates',
-        tabBarColor: '#1f65ff',
-        tabBarIcon: ({color}) => (
-          <FontAwesome5Icon name="chevron-right" color={color} size={26} />
+        tabBarLabel: themeStack.notification.label,
+        tabBarColor: themeStack.notification.color,
+        tabBarIcon: ({color}: {color: string}) => (
+          <Icon name="md-notifications" color={color} size={26} />
         ),
       }}
     />
     <Tab.Screen
-      name="ProfileStack"
+      name={ConstantStack.PROFILESTACK}
       component={ProfileStackScreen}
       options={{
-        tabBarLabel: 'Profile',
-        tabBarColor: '#694fad',
-        tabBarIcon: ({color}) => (
-          <FontAwesome5Icon name="chevron-right" color={color} size={26} />
+        tabBarLabel: themeStack.profile.label,
+        tabBarColor: themeStack.profile.color,
+        tabBarIcon: ({color}: {color: string}) => (
+          <Icon name="md-person" color={color} size={26} />
         ),
       }}
     />
     <Tab.Screen
-      name="ExploreStack"
+      name={ConstantStack.EXPLORESTACK}
       component={ExploreStackScreen}
       options={{
-        tabBarLabel: 'Explore',
-        tabBarColor: '#d02860',
-        tabBarIcon: ({color}) => (
-          <FontAwesome5Icon name="chevron-right" color={color} size={26} />
+        tabBarLabel: themeStack.explore.label,
+        tabBarColor: themeStack.explore.color,
+        tabBarIcon: ({color}:{color:string}) => (
+          <Icon name="md-logo-windows" color={color} size={26} />
         ),
       }}
     />
@@ -71,7 +77,7 @@ const HomeStackScreen = ({navigation}: any) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: themeStack.home.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -79,16 +85,12 @@ const HomeStackScreen = ({navigation}: any) => (
       },
     }}>
     <HomeStack.Screen
-      name="Home"
+      name={ConstantScreen.HOMESCREEN}
       component={HomeScreen}
       options={{
         title: 'Overview',
         headerLeft: () => (
-          <FontAwesome5Icon.Button
-            name="bars"
-            size={25}
-            backgroundColor="#009387"
-            onPress={() => navigation.openDrawer()}></FontAwesome5Icon.Button>
+          <HeaderBarLeft color={themeStack.home.color} navigation={navigation} />
         ),
       }}
     />
@@ -99,7 +101,7 @@ const DetailsStackScreen = ({navigation}: any) => (
   <DetailsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1f65ff',
+        backgroundColor:themeStack.notification.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -107,16 +109,11 @@ const DetailsStackScreen = ({navigation}: any) => (
       },
     }}>
     <DetailsStack.Screen
-      name="Details"
+      name={ConstantScreen.DETAILSCREEN}
       component={DetailsScreen}
       options={{
-        headerLeft: () => (
-          <FontAwesome5Icon.Button
-            name="ios-menu"
-            size={25}
-            backgroundColor="#1f65ff"
-            onPress={() => navigation.openDrawer()}></FontAwesome5Icon.Button>
-        ),
+        title: 'DetailScreen',
+        headerLeft: () => <HeaderBackLeft color={themeStack.notification.color}/>,
       }}
     />
   </DetailsStack.Navigator>
@@ -125,7 +122,7 @@ const ProfileStackScreen = ({navigation}: any) => (
   <ProfileStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1f65ff',
+        backgroundColor:themeStack.profile.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -133,16 +130,11 @@ const ProfileStackScreen = ({navigation}: any) => (
       },
     }}>
     <ProfileStack.Screen
-      name="Details"
+      name={ConstantScreen.PROFILESCREEN}
       component={ProfileScreen}
       options={{
-        headerLeft: () => (
-          <FontAwesome5Icon.Button
-            name="ios-menu"
-            size={25}
-            backgroundColor="#1f65ff"
-            onPress={() => navigation.openDrawer()}></FontAwesome5Icon.Button>
-        ),
+        title: 'ProfileScreen',
+        headerLeft: () => <HeaderBackLeft color={themeStack.profile.color}/>,
       }}
     />
   </ProfileStack.Navigator>
@@ -151,7 +143,7 @@ const ExploreStackScreen = ({navigation}: any) => (
   <ExploreStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1f65ff',
+        backgroundColor: themeStack.explore.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -159,16 +151,11 @@ const ExploreStackScreen = ({navigation}: any) => (
       },
     }}>
     <ExploreStack.Screen
-      name="Explore"
+      name={ConstantScreen.EXPLORESCREEN}
       component={ExploreScreen}
       options={{
-        headerLeft: () => (
-          <FontAwesome5Icon.Button
-            name="ios-menu"
-            size={25}
-            backgroundColor="#1f65ff"
-            onPress={() => navigation.openDrawer()}></FontAwesome5Icon.Button>
-        ),
+        title: 'ExploreScreen',
+        headerLeft: () => <HeaderBackLeft color={themeStack.explore.color} />,
       }}
     />
   </ExploreStack.Navigator>

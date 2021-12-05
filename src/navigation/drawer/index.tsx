@@ -16,7 +16,7 @@ import {
     DrawerItem
 } from '@react-navigation/drawer';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import{ AuthContext } from '../../contexts/authContext';
 
@@ -71,7 +71,7 @@ export function DrawerContent(props:any) {
                         <DrawerItem 
                             icon={({color, size}) => (
                                 <Icon 
-                                name="account-outline" 
+                                name="md-person-outline" 
                                 color={color}
                                 size={size}
                                 />
@@ -104,7 +104,7 @@ export function DrawerContent(props:any) {
                         <DrawerItem 
                             icon={({color, size}) => (
                                 <Icon 
-                                name="account-check-outline" 
+                                name="md-planet-outline" 
                                 color={color}
                                 size={size}
                                 />
@@ -129,13 +129,13 @@ export function DrawerContent(props:any) {
                 <DrawerItem 
                     icon={({color, size}) => (
                         <Icon 
-                        name="exit-to-app" 
+                        name="md-exit-outline" 
                         color={color}
                         size={size}
                         />
                     )}
                     label="Sign Out"
-                    onPress={()=>signOut()}
+                    onPress={()=> signOut()}
                 />
             </Drawer.Section>
         </View>
