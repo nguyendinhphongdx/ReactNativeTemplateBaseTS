@@ -14,6 +14,10 @@ target 'MobileLive' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'MobileLiveTests' do
     inherit! :complete
     # Pods for testing
