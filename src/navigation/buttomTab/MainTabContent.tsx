@@ -13,7 +13,7 @@ import {
   HeaderBackLeft,
   HeaderBarLeft,
 } from '../../components/headers/HeaderLeft';
-import { themeStack } from '../../theme/themeConfig';
+import {themeStack} from '../../theme/themeConfig';
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
@@ -23,7 +23,11 @@ const ExploreStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => (
-  <Tab.Navigator initialRouteName={ConstantStack.HOMESTACK} activeColor="#fff">
+  <Tab.Navigator
+    initialRouteName={ConstantStack.HOMESTACK}
+    activeColor="#f0edf6"
+    inactiveColor="#3e2465"
+    >
     <Tab.Screen
       name={ConstantStack.HOMESTACK}
       component={HomeStackScreen}
@@ -63,7 +67,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: themeStack.explore.label,
         tabBarColor: themeStack.explore.color,
-        tabBarIcon: ({color}:{color:string}) => (
+        tabBarIcon: ({color}: {color: string}) => (
           <Icon name="md-logo-windows" color={color} size={26} />
         ),
       }}
@@ -76,13 +80,14 @@ export default MainTabScreen;
 const HomeStackScreen = ({navigation}: any) => (
   <HomeStack.Navigator
     screenOptions={{
-      headerStyle: {
-        backgroundColor: themeStack.home.color,
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+      headerShown: false,
+      // headerStyle: {
+      //   backgroundColor: themeStack.home.color,
+      // },
+      // headerTintColor: '#fff',
+      // headerTitleStyle: {
+      //   fontWeight: 'bold',
+      // },
     }}>
     <HomeStack.Screen
       name={ConstantScreen.HOMESCREEN}
@@ -90,7 +95,10 @@ const HomeStackScreen = ({navigation}: any) => (
       options={{
         title: 'Overview',
         headerLeft: () => (
-          <HeaderBarLeft color={themeStack.home.color} navigation={navigation} />
+          <HeaderBarLeft
+            color={themeStack.home.color}
+            navigation={navigation}
+          />
         ),
       }}
     />
@@ -101,7 +109,7 @@ const DetailsStackScreen = ({navigation}: any) => (
   <DetailsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor:themeStack.notification.color,
+        backgroundColor: themeStack.notification.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -113,7 +121,9 @@ const DetailsStackScreen = ({navigation}: any) => (
       component={DetailsScreen}
       options={{
         title: 'DetailScreen',
-        headerLeft: () => <HeaderBackLeft color={themeStack.notification.color}/>,
+        headerLeft: () => (
+          <HeaderBackLeft color={themeStack.notification.color} />
+        ),
       }}
     />
   </DetailsStack.Navigator>
@@ -122,7 +132,7 @@ const ProfileStackScreen = ({navigation}: any) => (
   <ProfileStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor:themeStack.profile.color,
+        backgroundColor: themeStack.profile.color,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -134,7 +144,7 @@ const ProfileStackScreen = ({navigation}: any) => (
       component={ProfileScreen}
       options={{
         title: 'ProfileScreen',
-        headerLeft: () => <HeaderBackLeft color={themeStack.profile.color}/>,
+        headerLeft: () => <HeaderBackLeft color={themeStack.profile.color} />,
       }}
     />
   </ProfileStack.Navigator>
