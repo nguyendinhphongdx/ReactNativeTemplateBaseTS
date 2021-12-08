@@ -21,8 +21,8 @@ export function HeaderBackLeft(props: {color?: string}) {
     <FontAwesome5Icon.Button
       name="angle-left"
       size={25}
-      backgroundColor={color}
-      onPress={() => navigation.goBack()}></FontAwesome5Icon.Button>
+      style={{paddingLeft:10}}
+      onPress={() => navigation.canGoBack()?navigation.goBack():null}></FontAwesome5Icon.Button>
   );
 }
 export function HeaderScreen(props: {title?: string; goback?: boolean}) {

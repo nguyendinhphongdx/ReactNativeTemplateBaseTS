@@ -7,6 +7,7 @@ import {
 import SplashScreen from '../../screens/splash';
 import SignInScreen from '../../screens/signIn';
 import SignUpScreen from '../../screens/signUp';
+import {ConstantScreen} from '../../config/constant';
 
 const RootStack = createStackNavigator();
 
@@ -19,9 +20,18 @@ const RootStackScreen = ({navigation}: any) => (
       cardOverlayEnabled: false,
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}>
-    <RootStack.Screen name="SplashScreen" component={SplashScreen} />
-    <RootStack.Screen name="SignInScreen" component={SignInScreen} />
-    <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />
+    <RootStack.Screen
+      name={ConstantScreen.SPLASHSCREEN}
+      component={SplashScreen}
+    />
+    <RootStack.Screen
+      name={ConstantScreen.SIGNINSCREEN}
+      component={SignInScreen}
+    />
+    <RootStack.Screen
+      name={ConstantScreen.SIGNUPSCREEN}
+      component={SignUpScreen}
+    />
   </RootStack.Navigator>
 );
 
