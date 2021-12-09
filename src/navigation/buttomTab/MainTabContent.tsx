@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import ProfileScreen from '../../screens/profile';
@@ -14,6 +14,7 @@ import {
   HeaderBarLeft,
 } from '../../components/headers/HeaderLeft';
 import {themeStack} from '../../theme/themeConfig';
+import PersonLiveScreen from '../../screens/personlive';
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
@@ -21,12 +22,12 @@ const ProfileStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
-
 const MainTabScreen = () => (
   <Tab.Navigator
     initialRouteName={ConstantStack.HOMESTACK}
     activeColor="#f0edf6"
     inactiveColor="#3e2465"
+    sceneAnimationEnabled={true}
     >
     <Tab.Screen
       name={ConstantStack.HOMESTACK}
@@ -81,17 +82,26 @@ const HomeStackScreen = ({navigation}: any) => (
   <HomeStack.Navigator
     screenOptions={{
       headerShown: false,
-      // headerStyle: {
-      //   backgroundColor: themeStack.home.color,
-      // },
-      // headerTintColor: '#fff',
-      // headerTitleStyle: {
-      //   fontWeight: 'bold',
-      // },
+      gestureDirection: 'horizontal',
+      cardOverlayEnabled: false,
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
     }}>
     <HomeStack.Screen
       name={ConstantScreen.HOMESCREEN}
       component={HomeScreen}
+      options={{
+        title: 'Overview',
+        headerLeft: () => (
+          <HeaderBarLeft
+            color={themeStack.home.color}
+            navigation={navigation}
+          />
+        ),
+      }}
+    />
+     <HomeStack.Screen
+      name={ConstantScreen.PERSONLIVESCREEN}
+      component={PersonLiveScreen}
       options={{
         title: 'Overview',
         headerLeft: () => (

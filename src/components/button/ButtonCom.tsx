@@ -31,7 +31,6 @@ function ButtonComponent(props: {
 }
 const style = StyleSheet.create({
   buton: {
-    width: '100%',
     backgroundColor: 'orange',
     borderRadius: 15,
     overflow:'hidden'

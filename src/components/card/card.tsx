@@ -6,7 +6,7 @@ function CardComponent ({children}:{children:React.ReactNode}){
     return(
         <View
         style={{
-          marginTop: SIZES.padding,
+          marginTop: SIZES.radius,
           marginHorizontal: SIZES.radius,
           alignItems: "center",
           borderRadius: SIZES.radius,

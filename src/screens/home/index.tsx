@@ -1,41 +1,22 @@
-import {useNavigation} from '@react-navigation/core';
+import { NavigationProp, useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {
-  VictoryAxis,
-  VictoryChart,
-  VictoryLine,
-  VictoryScatter,
-} from 'victory-native';
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import ButtonComponent from '../../components/button/ButtonCom';
 import CardComponent from '../../components/card/card';
 import ScatterChart from '../../components/charts/scatterChart';
 import {HeaderBarLeft} from '../../components/headers/HeaderLeft';
+import RowComponent from '../../components/row/RowComponent';
+import { ConstantScreen } from '../../config/constant';
 import {COLORS, FONTS, icons, SIZES} from '../../constant';
-import victoryCustomTheme from '../../constant/victoryCustomTheme';
 
-const HomeScreen = ({navigation}: any) => {
-  const CurrencyLabel = ({
-    icon,
-    currency,
-    code,
-  }: {
-    icon: any;
-    currency: string;
-    code: string;
-  }) => {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <Image source={icon} style={{width: 25, height: 25, marginTop: 5}} />
-        <View
-          style={{
-            marginLeft: SIZES.base,
-          }}>
-          <Text style={{...FONTS.h3}}>{currency}</Text>
-          <Text style={{color: COLORS.gray, ...FONTS.body4}}>{code}</Text>
-        </View>
-      </View>
-    );
-  };
+const HomeScreen = ({navigation}: {navigation: NavigationProp<ReactNavigation.RootParamList>}) => {
   const chartData = [
     {x: 1, y: 2.5},
     {x: 1.5, y: 2},
@@ -47,52 +28,124 @@ const HomeScreen = ({navigation}: any) => {
   ];
   const HeaderCard = () => {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: SIZES.padding,
-          paddingHorizontal: SIZES.padding,
-        }}>
+      <RowComponent>
         <View style={{flex: 1}}>
-          <CurrencyLabel icon={icons.star} currency={'abc'} code="xyz" />
+          <View style={{flexDirection: 'row'}}>
+            <Image
+              source={icons.star}
+              style={{width: 25, height: 25, marginTop: 5}}
+            />
+            <View
+              style={{
+                marginLeft: SIZES.base,
+              }}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {'Nguyễn Đình Phong'}
+              </Text>
+              <Text style={{color: COLORS.gray, ...FONTS.body4}}>
+                {'18A10010057'}
+              </Text>
+            </View>
+          </View>
         </View>
         <View>
-          <Text style={{...FONTS.h3}}>$100</Text>
-          <Text style={{color: COLORS.green}}>change</Text>
+          <Text style={{...FONTS.h3}}>{new Date().toLocaleDateString()}</Text>
+          <Text style={{color: COLORS.green, textAlign: 'right'}}>change</Text>
         </View>
-      </View>
+      </RowComponent>
     );
   };
+  const handleNavLive = ()=>{
+    navigation.navigate({name:ConstantScreen.PERSONLIVESCREEN});
+  }
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.lightGray}}>
-      <HeaderBarLeft color={'blue'} navigation={navigation} />
+       <HeaderBarLeft navigation={navigation} title={'Home'} />
+      <ScrollView>
         <CardComponent>
-          <HeaderCard/>
-          <ScatterChart data={chartData}/>
+          <HeaderCard />
+          <ScatterChart data={chartData} />
         </CardComponent>
         <CardComponent>
-          <HeaderCard/>
+        <RowComponent styleWrap={{marginBottom: 5}}>
+            <View style={{flex: 1}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {'Số lượt còn lại'}
+              </Text>
+            </View>
+            <View>
+              <Text style={{...FONTS.h3}}>{'5'} Ca</Text>
+            </View>
+          </RowComponent>
+          <RowComponent styleWrap={{marginBottom: 10, paddingHorizontal: 10}}>
+            <ButtonComponent
+              color={[COLORS.greenThin, COLORS.greenThin]}
+              styleTitle={{color: COLORS.white}}
+              title="Mua dịch vụ"
+              styleButton={{
+                width: '100%',
+              }}
+            />
+          </RowComponent>
         </CardComponent>
+        <CardComponent>
+          <RowComponent styleWrap={{marginBottom: 5}}>
+            <View style={{flex: 1}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {'Số lượng đã trực'}
+              </Text>
+            </View>
+            <View>
+              <Text style={{...FONTS.h3}}>{'5'} Ca</Text>
+            </View>
+          </RowComponent>
+          <RowComponent styleWrap={{marginBottom: 5}}>
+            <View style={{flex: 1}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {'Số lượng chưa trực'}
+              </Text>
+            </View>
+            <View>
+              <Text style={{...FONTS.h3}}>{'5'} Ca</Text>
+            </View>
+          </RowComponent>
+          <RowComponent styleWrap={{marginBottom: 10, paddingHorizontal: 10}}>
+            <ButtonComponent
+              color={[COLORS.greenThin, COLORS.greenThin]}
+              styleTitle={{color: COLORS.white}}
+              title="Danh sách trực"
+              styleButton={{
+                width: '100%',
+              }}
+              onPress={handleNavLive}
+            />
+          </RowComponent>
+        </CardComponent>
+        <CardComponent>
+          <RowComponent styleWrap={{marginBottom: 5}}>
+            <View style={{flex: 1}}>
+              <Text style={{...FONTS.h3, color: COLORS.black}}>
+                {'Lịch trực đã đăng kí'}
+              </Text>
+            </View>
+            <View>
+              <Text style={{...FONTS.h3}}>{'5'} Ca / Tuần</Text>
+            </View>
+          </RowComponent>
+          <RowComponent styleWrap={{marginBottom: 10, paddingHorizontal: 10}}>
+            <ButtonComponent
+              color={[COLORS.greenThin, COLORS.greenThin]}
+              styleTitle={{color: COLORS.white}}
+              title="Đăng kí lịch"
+              styleButton={{
+                width: '100%',
+              }}
+            />
+          </RowComponent>
+        </CardComponent>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 export default HomeScreen;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  shadow: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
-  },
-});

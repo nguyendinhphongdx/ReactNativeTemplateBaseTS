@@ -19,7 +19,7 @@ import {useTheme} from 'react-native-paper';
 
 import {AuthContext} from '../../contexts/authContext';
 
-import Users from '../../_mock/users';
+import {users as Users} from '../../_mock';
 import AnimatedLottieView from 'lottie-react-native';
 import Animated, {EasingNode} from 'react-native-reanimated';
 import ButtonComponent from '../../components/button/ButtonCom';
