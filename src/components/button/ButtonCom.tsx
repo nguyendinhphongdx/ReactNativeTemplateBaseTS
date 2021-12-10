@@ -8,8 +8,9 @@ function ButtonComponent(props: {
   title?: string;
   color?: (string | number)[];
   styleButton?: ViewStyle;
-  styleTitle?:  TextStyle;
+  styleTitle?: TextStyle;
   onPress?: () => void;
+  enable?: boolean;
 }) {
   const {
     title = 'title',
@@ -17,13 +18,17 @@ function ButtonComponent(props: {
     onPress,
     styleButton,
     styleTitle,
+    enable = true,
   } = props;
   const handlePress = () => {
     onPress ? onPress() : null;
   };
   return (
-    <LinearGradient colors={color} style={[style.buton, {...styleButton}]}>
-      <TouchableOpacity activeOpacity={0.7} style={{padding: 12}} onPress={() => handlePress()}>
+    <LinearGradient colors={color} style={[style.buton, {...styleButton,opacity:enable?1:.5}]}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={{padding: 12}}
+        onPress={() => handlePress()}>
         <Text style={[style.title, {...styleTitle}]}>{title}</Text>
       </TouchableOpacity>
     </LinearGradient>
@@ -33,7 +38,7 @@ const style = StyleSheet.create({
   buton: {
     backgroundColor: 'orange',
     borderRadius: 15,
-    overflow:'hidden'
+    overflow: 'hidden',
   },
   title: {
     fontFamily: 'Roboto-Bold',

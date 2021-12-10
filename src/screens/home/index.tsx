@@ -58,8 +58,11 @@ const HomeScreen = ({navigation}: {navigation: NavigationProp<ReactNavigation.Ro
   const handleNavLive = ()=>{
     navigation.navigate({name:ConstantScreen.PERSONLIVESCREEN});
   }
+  const handleNavSchedule = ()=>{
+    // navigation.navigate({name:ConstantScreen.NOTIFYSCREEN});
+  }
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.lightGray}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
        <HeaderBarLeft navigation={navigation} title={'Home'} />
       <ScrollView>
         <CardComponent>
@@ -140,6 +143,7 @@ const HomeScreen = ({navigation}: {navigation: NavigationProp<ReactNavigation.Ro
               styleButton={{
                 width: '100%',
               }}
+              onPress={handleNavSchedule}
             />
           </RowComponent>
         </CardComponent>

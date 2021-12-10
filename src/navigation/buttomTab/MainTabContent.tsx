@@ -15,9 +15,10 @@ import {
 } from '../../components/headers/HeaderLeft';
 import {themeStack} from '../../theme/themeConfig';
 import PersonLiveScreen from '../../screens/personlive';
+import NotifyScreen from '../../screens/notify';
 
 const HomeStack = createStackNavigator();
-const DetailsStack = createStackNavigator();
+const NotifyStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const MainTabScreen = () => (
     activeColor="#f0edf6"
     inactiveColor="#3e2465"
     sceneAnimationEnabled={true}
+   
     >
     <Tab.Screen
       name={ConstantStack.HOMESTACK}
@@ -42,7 +44,7 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name={ConstantStack.NOTIFICATIONSTACK}
-      component={DetailsStackScreen}
+      component={NotifyStackScreen}
       options={{
         tabBarLabel: themeStack.notification.label,
         tabBarColor: themeStack.notification.color,
@@ -112,12 +114,17 @@ const HomeStackScreen = ({navigation}: any) => (
         ),
       }}
     />
+     <HomeStack.Screen
+      name={ConstantScreen.DETAILSCREEN}
+      component={DetailsScreen}
+    />
   </HomeStack.Navigator>
 );
 
-const DetailsStackScreen = ({navigation}: any) => (
-  <DetailsStack.Navigator
+const NotifyStackScreen = ({navigation}: any) => (
+  <NotifyStack.Navigator
     screenOptions={{
+      headerShown:false,
       headerStyle: {
         backgroundColor: themeStack.notification.color,
       },
@@ -126,17 +133,17 @@ const DetailsStackScreen = ({navigation}: any) => (
         fontWeight: 'bold',
       },
     }}>
-    <DetailsStack.Screen
-      name={ConstantScreen.DETAILSCREEN}
-      component={DetailsScreen}
+    <NotifyStack.Screen
+      name={ConstantScreen.NOTIFYSCREEN}
+      component={NotifyScreen}
       options={{
-        title: 'DetailScreen',
+        title: 'NotifyScreen',
         headerLeft: () => (
           <HeaderBackLeft color={themeStack.notification.color} />
         ),
       }}
     />
-  </DetailsStack.Navigator>
+  </NotifyStack.Navigator>
 );
 const ProfileStackScreen = ({navigation}: any) => (
   <ProfileStack.Navigator

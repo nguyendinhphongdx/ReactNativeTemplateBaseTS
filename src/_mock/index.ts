@@ -1,6 +1,6 @@
-import live from './lives';
+import lives from './lives';
 import users from './users';
 export {
-    live,
+    lives,
     users
 };

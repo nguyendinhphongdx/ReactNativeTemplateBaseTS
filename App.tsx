@@ -162,7 +162,7 @@ const App = () => {
         <NavigationContainer theme={theme}>
           {loginState.userToken !== null ? (
             <Drawer.Navigator
-              screenOptions={{headerShown: false}}
+              screenOptions={{headerShown: false, swipeEnabled: false}}
               drawerContent={props => <DrawerContent {...props} />}>
               <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />

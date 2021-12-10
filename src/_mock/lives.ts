@@ -48,5 +48,26 @@ const Lives:Array<any> = [
         stage:"3A",
         session:3
     },
+    {
+        id:7,
+        date:new Date(),
+        day:"friday",
+        stage:"1A",
+        session:3
+    },
+    {
+        id:8,
+        date:new Date(),
+        day:"saturday",
+        stage:"3A",
+        session:3
+    },
+    {
+        id:9,
+        date:new Date(),
+        day:"sunday",
+        stage:"3A",
+        session:3
+    },
 ]
 export default Lives;

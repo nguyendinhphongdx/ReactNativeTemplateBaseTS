@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { COLORS, SIZES } from "../../constant";
 import styles from "../../constant/styles";
-function CardComponent ({children}:{children:React.ReactNode}){
+function CardComponent ({children,style}:{children:React.ReactNode,style?:ViewStyle}){
     return(
         <View
         style={{
@@ -12,6 +12,7 @@ function CardComponent ({children}:{children:React.ReactNode}){
           borderRadius: SIZES.radius,
           backgroundColor: COLORS.white,
           ...styles.shadow,
+          ...style
         }}
       >
        {children}

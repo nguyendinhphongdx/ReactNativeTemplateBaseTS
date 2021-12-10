@@ -17,7 +17,7 @@ export function HeaderBarLeft(props: {
         padding: 10,
         justifyContent: 'space-between',
       }}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row',alignItems:'center'}}>
         <FontAwesome5Icon
           name="bars"
           color={color}
@@ -62,7 +62,7 @@ export function HeaderScreen(props: {
         padding: 10,
         justifyContent: 'space-between',
       }}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row',alignItems:'center'}}>
         <FontAwesome5Icon
           name="arrow-left"
           color={color}
