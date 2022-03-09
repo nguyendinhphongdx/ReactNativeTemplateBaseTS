@@ -32,7 +32,7 @@ const OnboardingScreen = ({navigation}) => {
       <View style={{marginTop: 20}}>
         <Text
           style={{
-            fontFamily: 'Inter-Bold',
+            fontFamily: 'Roboto-Bold',
             fontWeight: 'bold',
             fontSize: 30,
             color: '#20315f',

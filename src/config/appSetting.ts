@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 class AppSettings {
   defaultUser = {
-    name: 'Nguyễn Anh Phan',
-    subName: 'Trưởng Phòng',
+    name: 'Nguyen Thanh Tung',
+    subName: 'TungNgtg',
     token: null,
   };
   remember: boolean = false;

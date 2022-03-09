@@ -85,9 +85,9 @@ export const theme = {
   },
 };
 export const backgroundLinear = [
-  theme.colors.purplebackground,
+  theme.colors.card,
   theme.colors.background,
-  theme.colors.purplebackground,
+  theme.colors.card,
 ];
 export const rotateBg = {
   start: [1, 0],

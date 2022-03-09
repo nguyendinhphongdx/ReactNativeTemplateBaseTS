@@ -59,20 +59,17 @@ const LoginScreen = () => {
     navigation.navigate(NameScreen.SecurityNetWorkScreen);
   };
   const handleLogin = async () => {
-    console.log(state);
-    
-    // setLoading(true);
-    // Validate.validateLogin();
-    // helpers.waited(2000).then(d => {
-    //   handleSaveToken('avb');
-    //   navigation.reset({
-    //     index: 0,
-    //     routes: [{name: NameScreen.StacksScreen.AppStack}],
-    //   });
-    // });
-    // helpers.waited(3000).then(d => {
-    //   setLoading(false);
-    // });
+    setLoading(true);
+    helpers.waited(2000).then(d => {
+      handleSaveToken('avb');
+      navigation.reset({
+        index: 0,
+        routes: [{name: NameScreen.StacksScreen.AppStack}],
+      });
+    });
+    helpers.waited(3000).then(d => {
+      setLoading(false);
+    });
   };
   return (
     <ViewBackGround>

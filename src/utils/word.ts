@@ -1,5 +1,5 @@
 const wordApp = {
-    nameApp: 'eEye Security',
+    nameApp: 'TRỰC VĂN PHÒNG',
     username: 'Username',
     password: 'Password',
     remember: 'Remember Account',
