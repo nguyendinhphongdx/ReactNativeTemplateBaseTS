@@ -107,6 +107,7 @@ const LoginScreen = ({onNext}:any) => {
         defaultIsChecked={state.remember}
       />
       <Button
+        _pressed={{opacity:.7}}
         height={'1/5'}
         onPress={handleLogin}
         style={styles.button}>

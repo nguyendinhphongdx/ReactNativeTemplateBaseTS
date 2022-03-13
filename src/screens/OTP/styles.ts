@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
     backgroundColor: theme.colors.hight,
+    paddingVertical:50,
   },
   account: {
     fontFamily: 'Roboto-Bold',
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   titleButton: {
     ...theme.fontSize.h3,
     color: theme.colors.white,
+    paddingVertical:10,
     fontWeight: 'bold',
   },
 });

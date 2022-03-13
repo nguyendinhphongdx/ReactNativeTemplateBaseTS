@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import {Flex, HStack, Icon, Text, View} from 'native-base';
+import {Flex, HStack, Icon, Pressable, Text, View} from 'native-base';
 import React from 'react';
 import {AntDesign} from '../../assets/icons';
 import wordApp from '../../utils/word';
@@ -16,6 +16,7 @@ function IconBack(props: PropsTypes) {
   };
   return (
     <Flex flexDirection="row" style={{alignItems: 'center'}}>
+      <Pressable  onPress={handleGoBack} _pressed={{opacity:.7}}>
       <HStack justifyContent="center" alignItems="center" alignContent={'center'}>
         <Icon
           as={<AntDesign name={'doubleleft'} />}
@@ -24,10 +25,10 @@ function IconBack(props: PropsTypes) {
           mr={3}
           ml={3}
           color="primary.900"
-          onPress={handleGoBack}
         />
-        <Text>{wordApp.back}</Text>
+        <Text style={{fontSize:16}}>{wordApp.back}</Text>
       </HStack>
+      </Pressable>
     </Flex>
   );
 }

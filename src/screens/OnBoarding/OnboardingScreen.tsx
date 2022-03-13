@@ -54,7 +54,7 @@ const OnboardingScreen = ({navigation}:any) => {
       children: <LoginScreen onNext={() => handleNext()}/>,
     },
     {
-      children: <AuthOTPScreen onNext={() => handleNext()}/>,
+      children: <AuthOTPScreen />,
     },
   ];
   useEffect(() =>{

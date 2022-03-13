@@ -16,6 +16,7 @@ const wordApp = {
     slogan: 'Hãy trực theo một cách chuyên nghiệp nhất',
     phoneNumber:"0964854447",
     support:"Hỗ trợ :",
-    back:"back"
+    back:"back",
+    auth:'Xác thực'
 }
 export default wordApp;

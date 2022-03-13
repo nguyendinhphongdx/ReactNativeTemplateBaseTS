@@ -13,6 +13,7 @@ const MyCheckBox = (props: PropsTypes) => {
   return (
     <Flex flexDirection={'row'}>
       <Checkbox
+        borderColor={'darkBlue.400'}
         value="test"
         accessibilityLabel="This is a dummy checkbox"
         defaultIsChecked={props.defaultIsChecked}
