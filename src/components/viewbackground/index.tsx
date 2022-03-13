@@ -35,7 +35,7 @@ function ViewBackGround({children, safeArea = true, bgColors=backgroundLinear,ro
       }}
       safeAreaTop={safeArea}>
       <StatusBar
-        barStyle={'light-content'}
+        barStyle={'dark-content'}
         translucent={true}
         backgroundColor={'transparent'}
       />

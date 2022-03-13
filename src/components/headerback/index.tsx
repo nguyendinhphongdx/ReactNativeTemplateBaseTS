@@ -8,12 +8,13 @@ import wordApp from '../../utils/word';
 interface PropsTypes {
   title?: string;
   RightElement?: React.ReactNode;
+  onPress?:any
 }
 function HeaderBack(props: PropsTypes) {
   const navigation = useNavigation();
   const handleGoBack = () => {
     console.log('back');
-    navigation.goBack();
+    props.onPress? props.onPress() :navigation.goBack();
   };
   return (
     <Flex flexDirection="row" style={{alignItems: 'center'}}>

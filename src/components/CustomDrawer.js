@@ -9,7 +9,7 @@ import {
 import Animated from 'react-native-reanimated';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NameScreen } from '../config';
+import { AppSettings, NameScreen } from '../config';
 import { AuthContext } from '../context/AuthContext';
 const CustomDrawer = props => {
   const {handleSaveToken} = useContext(AuthContext);
@@ -42,7 +42,7 @@ const CustomDrawer = props => {
               fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
-            Nguyễn Anh Phan
+           {AppSettings.defaultUser.name}
           </Text>
           <View style={{flexDirection: 'row'}}>
             <Text
@@ -51,7 +51,7 @@ const CustomDrawer = props => {
                 fontFamily: 'Roboto-Regular',
                 marginRight: 5,
               }}>
-              Trưởng phòng - Giải pháp giám sát 1
+              {AppSettings.defaultUser.subName}
             </Text>
             <FontAwesome5 name="coins" size={14} color="#fff" />
           </View>

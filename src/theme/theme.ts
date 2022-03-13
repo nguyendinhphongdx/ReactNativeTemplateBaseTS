@@ -29,7 +29,7 @@ export const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    text: '#fff',
+    text: '#c026d3',
     primary: '#560CCE',
     secondary: '#414757',
     error: '#f13a59',
@@ -47,6 +47,7 @@ export const theme = {
     blue: 'rgba(68,162,249,1)',
     green:'#fed7aa',
     coolGray:'#d1d5db',
+    white: '#fff',
     purplebackground: 'rgba(15,17,25,1)',
   },
   fontSize: {
@@ -85,9 +86,9 @@ export const theme = {
   },
 };
 export const backgroundLinear = [
-  theme.colors.card,
-  theme.colors.background,
-  theme.colors.card,
+  theme.colors.blue,
+  theme.colors.white,
+  theme.colors.blue,
 ];
 export const rotateBg = {
   start: [1, 0],

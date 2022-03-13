@@ -5,8 +5,8 @@ const TextInputComponent = (props: PropsTypes) => {
   const {
     type = 'text',
     placeholder,
-    width = '80%',
-    height = '10',
+    width = '100%',
+    height = '12',
     label,
   } = props;
   return (
@@ -28,6 +28,7 @@ const TextInputComponent = (props: PropsTypes) => {
         color={theme.colors.text}
         fontSize={"sm"}
         type={type}
+        borderColor={theme.colors.blue1}
         InputRightElement={props.RightElement ? props.RightElement : undefined}
         InputLeftElement={props.LeftElement ? props.LeftElement : undefined}
         placeholder={placeholder}
