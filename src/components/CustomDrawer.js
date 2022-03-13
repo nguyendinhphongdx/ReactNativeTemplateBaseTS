@@ -19,7 +19,7 @@ const CustomDrawer = props => {
     handleSaveToken(null);
     navigation.reset({
       index: 0,
-      routes: [{name: NameScreen.LoginScreen}],
+      routes: [{name: NameScreen.OnboardingScreen}],
     });
   }
 

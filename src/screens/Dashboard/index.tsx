@@ -22,39 +22,11 @@ export default function Container() {
   return <HomeScreen />;
 }
 function HomeScreen() {
-  const [autoPlay, setAutoPlay] = useState(false);
-  const visibleCarousel = useSharedValue(220);
-  const heightCarousel = useAnimatedStyle(() => {
-    return {
-      height: withTiming(visibleCarousel.value, {
-        duration: 500,
-        easing: Easing.ease,
-      }),
-    };
-  });
-  useFocusEffect(() => {
-    setAutoPlay(true);
-    return () => {
-      setAutoPlay(false);
-    };
-  });
-  const {loading, setLoading} = useContext(LoadingContext);
   return (
     <ViewBackGround>
       <View style={{flex: 1}}>
         <HeaderMenu title={NameScreen.DrawerScreen.DashboardScreen} />
-        <View style={{flex: 1}}>
-          <Animated.View
-            style={[heightCarousel, {overflow: 'hidden', paddingVertical: 5}]}>
-            <ImageBackground
-                source={require('../../assets/giff/electric2.gif')}
-                style={{width: '100%', height: '100%'}}
-                resizeMode="cover"
-                imageStyle={{opacity: 0.7, borderRadius: 10}}>
-                <Carousel autoPlay={autoPlay} />
-              </ImageBackground>
-          </Animated.View>
-        </View>
+       
       </View>
     </ViewBackGround>
   );

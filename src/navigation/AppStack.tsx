@@ -116,6 +116,16 @@ const AppStack = () => {
       }}>
       {/* <Drawer.Screen name="defaultScreen">{() => <Screens />}</Drawer.Screen> */}
       <Drawer.Screen
+        name={NameScreen.StacksScreen.TabBarBottom}
+        component={TabNavigator}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="newspaper-outline" size={22} color={color} />
+          ),
+          title: NameScreen.DrawerScreen.NewsScreen,
+        }}
+      />
+      <Drawer.Screen
         name={NameScreen.StacksScreen.DashboardStack}
         component={DashboardStack}
         options={{
@@ -143,16 +153,6 @@ const AppStack = () => {
             <FontAwesome name="gears" size={22} color={color} />
           ),
           title: NameScreen.DrawerScreen.ResponseScreen,
-        }}
-      />
-      <Drawer.Screen
-        name={NameScreen.StacksScreen.TabBarBottom}
-        component={TabNavigator}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="newspaper-outline" size={22} color={color} />
-          ),
-          title: NameScreen.DrawerScreen.NewsScreen,
         }}
       />
       <Drawer.Screen
