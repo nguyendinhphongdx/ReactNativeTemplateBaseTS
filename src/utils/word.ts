@@ -22,6 +22,9 @@ const wordApp = {
     founder: "TungNgtg",
     optionPartner:"Chọn đối tượng",
     continous:"Tiếp tục",
-    start:"Bắt đầu"
+    start:"Bắt đầu",
+    inforPartner:"Thông tin người trực",
+    requireAuth:"Vui lòng xác thực với mã OTP được gửi về điện thoại của bạn",
+    whereLocation:"Hôm nay bạn trực ở đâu?"
 }
 export default wordApp;

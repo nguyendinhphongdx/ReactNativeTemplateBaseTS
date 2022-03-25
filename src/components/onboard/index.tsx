@@ -1,13 +1,17 @@
-import { Box, Image, Text, View } from 'native-base';
+import {Box, Image, Text, View} from 'native-base';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import { svgs } from '../../assets';
-import { theme } from '../../theme/theme';
-import { windowWidth } from '../../utils/Dimensions';
+import {StyleSheet} from 'react-native';
+import {SvgXml} from 'react-native-svg';
+import {svgs} from '../../assets';
+import {theme} from '../../theme/theme';
+import {windowWidth} from '../../utils/Dimensions';
 import wordApp from '../../utils/word';
-
-function OnBoardFrame(props: any) {
+interface propsTypes {
+  children: React.ReactNode;
+  lineHorizontalCard?: boolean;
+}
+function OnBoardFrame(props: propsTypes) {
+  const {children} = props;
   return (
     <>
       <View
@@ -17,7 +21,11 @@ function OnBoardFrame(props: any) {
           paddingBottom: 20,
         }}>
         {/* <SvgXml xml={svgs.SvgEyeLogo} height={120} width={120} /> */}
-        <Image source={require("../../assets/icons/png/protection.png")} alt="protection" style={{width:120, height:120}}/>
+        <Image
+          source={require('../../assets/icons/png/protection.png')}
+          alt="protection"
+          style={{width: 120, height: 120}}
+        />
         <Text style={styles.nameApp}>{wordApp.nameApp}</Text>
       </View>
       <Box
@@ -33,7 +41,7 @@ function OnBoardFrame(props: any) {
           source={require('../../assets/images/png/lineHorizontal.png')}
           alt={'linehorizontal'}
         />
-        <View width={windowWidth}>{props.children}</View>
+        <View width={windowWidth}>{children}</View>
       </Box>
       <View
         style={{
@@ -41,7 +49,7 @@ function OnBoardFrame(props: any) {
           alignItems: 'center',
           justifyContent: 'flex-end',
           position: 'relative',
-          maxHeight:290,
+          maxHeight: 290,
         }}>
         <Image
           style={{width: '100%', height: '100%', position: 'absolute'}}

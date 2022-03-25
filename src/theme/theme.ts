@@ -50,7 +50,8 @@ export const theme = {
     white: '#fff',
     purplebackground: 'rgba(15,17,25,1)',
     blueText: 'rgba(66, 103, 178, 0.91)',
-    orrangeButton: 'rgba(255, 110, 1, 1)'
+    orrangeButton: 'rgba(255, 110, 1, 1)',
+    grayInput: 'rgba(232, 233, 238, 1)'
   },
   fontSize: {
     h1: {fontFamily: 'Roboto-Bold', fontSize: SIZES.h1, lineHeight: 36},

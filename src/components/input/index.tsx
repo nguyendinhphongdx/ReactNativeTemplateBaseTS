@@ -1,7 +1,19 @@
 import React, {MutableRefObject, Ref} from 'react';
-import {FormControl, HStack, Icon, Input, Text, VStack} from 'native-base';
+import {
+  FormControl,
+  HStack,
+  Icon,
+  Input,
+  Text,
+  View,
+  VStack,
+} from 'native-base';
 import {theme} from '../../theme/theme';
+import {KeyboardTypeOptions, LogBox} from 'react-native';
+import Animated, { useSharedValue, withRepeat } from 'react-native-reanimated';
+
 const TextInputComponent = (props: PropsTypes) => {
+  LogBox.ignoreLogs(['NativeBase:']);
   const {
     type = 'text',
     placeholder,
@@ -17,6 +29,7 @@ const TextInputComponent = (props: PropsTypes) => {
             ...theme.fontSize.h4,
             fontWeight: '500',
             paddingVertical: 2,
+
             color: theme.colors.text,
           }}>
           {label}
@@ -30,23 +43,32 @@ const TextInputComponent = (props: PropsTypes) => {
         h={{
           base: height,
         }}
-        borderColor={'darkBlue.400'}
         color={theme.colors.text}
+        // backgroundColor={"white"}
+        _light={{backgroundColor: theme.colors.white}}
         fontSize={'sm'}
+        variant={'filled'}
         type={type}
         // borderColor={theme.colors.blue1}
         InputRightElement={props.RightElement ? props.RightElement : undefined}
         InputLeftElement={props.LeftElement ? props.LeftElement : undefined}
         placeholder={placeholder}
-        placeholderTextColor={theme.colors.text}
+        placeholderTextColor={theme.colors.blueText}
         onChangeText={props.onChangeText}
+        borderRadius={10}
+        borderColor={null}
+        borderWidth={null}
+        _focus={{
+          borderWidth: null,
+        }}
+        keyboardType={props.keyboardType}
       />
     </>
   );
 };
 
 export const InputOTP = (props: PropsOTP) => {
-  const {height = 60, numberPin = 6, width, onChangeText, value=""} = props;
+  const {height = 60, numberPin = 6, width, onChangeText, value = ''} = props;
   const [focus, setFocus] = React.useState(0);
   const [text, setText] = React.useState(value);
   const handleNext = (index: number) => {
@@ -57,7 +79,7 @@ export const InputOTP = (props: PropsOTP) => {
   const changeText = (str: string) => {
     setText(str);
     onChangeText && onChangeText(str);
-  }
+  };
   const handleText = (s: string, index: number) => {
     changeText(
       [text.slice(0, index), s, text.slice(index)].join('').slice(0, numberPin),
@@ -96,10 +118,12 @@ const SingelOTP = React.memo((props: any) => {
     props;
   const ref = React.useRef();
   React.useEffect(() => {
-    focus && ref.current?.focus();
+    if(focus){
+      ref.current?.focus();
+    }
   }, [focus]);
   const handleChange = (s: string) => {
-    handleText(s.charAt(s.length-1), index);
+    handleText(s.charAt(s.length - 1), index);
   };
   const handleBack = () => {
     handleCut(index);
@@ -108,34 +132,54 @@ const SingelOTP = React.memo((props: any) => {
     }
   };
   return (
-    <Input
-      onChangeText={handleChange}
-      ref={ref}
-      // onFocus={() => setFocus(index)}
-      key={index}
-      flex={1}
-      value={value}
-      // maxLength={1}
-      // onSubmitEditing={}
-      keyboardType={'number-pad'}
-      fontSize={30}
-      _focus={{
-        borderColor:"amber.500"
-      }}
-      style={{borderColor:'red'}}
-      borderColor={'darkBlue.400'}
-      textAlign="center"
-      onKeyPress={({nativeEvent}) => {
-        nativeEvent.key === 'Backspace' ? handleBack() : handleNext(index + 1);
-      }}
-    />
+    <View style={{position: 'relative'}}>
+      <Input
+      
+        onChangeText={handleChange}
+        ref={ref}
+        // onFocus={() => setFocus(index)}
+        key={index}
+        // flex={1}
+        value={value}
+        // maxLength={1}
+        // onSubmitEditing={}
+        keyboardType={'number-pad'}
+        fontSize={24}
+        _focus={{
+          borderColor: 'primary.600',
+          backgroundColor: theme.colors.white,
+        }}
+        w={50}
+        h={50}
+        borderRadius={10}
+        caretHidden
+        backgroundColor={theme.colors.grayInput}
+        textAlign="center"
+        onKeyPress={({nativeEvent}) => {
+          nativeEvent.key === 'Backspace'
+            ? handleBack()
+            : handleNext(index + 1);
+        }}
+      />
+      {focus && (
+        <Animated.View
+          style={{
+            alignSelf: 'center',
+            width: '30%',
+            borderBottomWidth: 2,
+            bottom: 10,
+            opacity:1
+          }}
+        />
+      )}
+    </View>
   );
 });
 interface PropsOTP {
   numberPin?: number;
   width?: number | string;
   height?: number | string;
-  value?:string;
+  value?: string;
   onChangeText?: (text: string) => void;
 }
 interface PropsTypes {
@@ -147,5 +191,6 @@ interface PropsTypes {
   height?: number | string;
   type?: string;
   onChangeText?: (text: string) => void;
+  keyboardType?: KeyboardTypeOptions | undefined;
 }
 export default TextInputComponent;

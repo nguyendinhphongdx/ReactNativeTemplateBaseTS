@@ -32,13 +32,19 @@ import LoginScreen from '../Login/LoginScreen';
 import AuthOTPScreen from '../OTP';
 import HeaderBack from '../../components/headerback';
 import IconBack from '../../components/headerback/IconBack';
+import ButtonLogin from '../../components/button/ButtonLogin';
+interface stateTypes {
+  index: number;
+  partner: 'online' | 'offline' | null;
+}
 const OnboardingScreen = ({navigation}: any) => {
   const flatListRef = useRef<FlatList>(null);
-  const [state, setState] = useState({
+  const [state, setState] = useState<stateTypes>({
     index: 0,
+    partner: null,
   });
   const handleNext = () => {
-    if (state.index < 2) {
+    if (state.index < 1) {
       setState({...state, index: state.index + 1});
     } else {
       console.log('success');
@@ -47,16 +53,25 @@ const OnboardingScreen = ({navigation}: any) => {
   const handleBack = () => {
     setState({...state, index: state.index - 1});
   };
+  const handleSelectPartner = (partner: 'online' | 'offline' | null) => {
+    setState({
+      ...state,
+      partner,
+    });
+  };
   const data = [
     {
-      children: <ParterContent onNext={() => handleNext()} />,
+      children: (
+        <ParterContent
+          onNext={handleNext}
+          onSelect={handleSelectPartner}
+          selected={state.partner}
+        />
+      ),
     },
     {
       children: <LoginScreen onNext={() => handleNext()} />,
-    },
-    {
-      children: <AuthOTPScreen />,
-    },
+    }
   ];
   useEffect(() => {
     flatListRef.current?.scrollToIndex({index: state.index});
@@ -102,20 +117,22 @@ const OnboardingScreen = ({navigation}: any) => {
 
 export default OnboardingScreen;
 const ButtonPartner = (props: any) => {
-  const {onPress, title} = props;
+  const {onPress, title, active} = props;
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: theme.colors.white,
-        padding: 18,
+        backgroundColor: active ? theme.colors.blueText : theme.colors.white,
+        padding: 12,
         borderRadius: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        borderColor: active ? theme.colors.white : theme.colors.blueText,
+        borderWidth:1
       }}
       onPress={onPress}>
       <Text
         style={{
-          color: theme.colors.blueText,
+          color: active ? theme.colors.white : theme.colors.blueText,
           textAlign: 'center',
           width: '100%',
           fontWeight: 'bold',
@@ -126,7 +143,13 @@ const ButtonPartner = (props: any) => {
     </TouchableOpacity>
   );
 };
-const ParterContent = ({onNext}: any) => {
+interface partnerTypes {
+  onNext: () => void;
+  onSelect: (partner:'online' | 'offline') => void;
+  selected: 'online' | 'offline' | null;
+}
+const ParterContent = (props: partnerTypes) => {
+  const {onNext, onSelect, selected} = props;
   return (
     <View style={{paddingHorizontal: 20}}>
       <Text
@@ -140,33 +163,17 @@ const ParterContent = ({onNext}: any) => {
       </Text>
       <VStack space={5}>
         <ButtonPartner
+          active={selected === 'offline'}
           title={wordApp.onlinePartner.toUpperCase()}
-          onPress={onNext}
+          onPress={()=>onSelect("offline")}
         />
         <ButtonPartner
+          active={selected === 'online'}
           title={wordApp.offlinePartner.toUpperCase()}
-          onPress={onNext}
+          onPress={()=>onSelect("online")}
         />
       </VStack>
-      <Button
-       _pressed={{opacity:.7}}
-        style={{
-          marginTop:20,
-          borderRadius: 22,
-          backgroundColor: theme.colors.orrangeButton,
-          alignSelf: 'center',
-        }}>
-        <Text
-          style={{
-            paddingVertical: 5,
-            paddingHorizontal: 30,
-            fontWeight: 'bold',
-            color: theme.colors.white,
-            fontSize:20
-          }}>
-          {wordApp.continous.toUpperCase()}
-        </Text>
-      </Button>
+      <ButtonLogin onPress={onNext} title={wordApp.continous.toUpperCase()}/>
     </View>
   );
 };

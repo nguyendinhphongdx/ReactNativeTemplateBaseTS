@@ -1,5 +1,7 @@
 const NameScreen:any = {
     LoginScreen:"LoginScreen",
+    AuthOTPScreen:"AuthOTPScreen",
+    LocationScreen:"LocationScreen",
     OnboardingScreen:"OnboardingScreen",
     StacksScreen:{
         TabBarBottom:"TabBarBottom",
