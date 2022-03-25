@@ -7,7 +7,7 @@ const wordApp = {
     refresh:'Làm mới',
     number:"Số lượng",
     status:"Trạng thái",
-    description:"Mô tả",
+    description:"Phần mềm trực do GIẢI PHÁP TRỰC VĂN PHÒNG phát triển. Hỗ trợ anh em thực hiện checklist công việc.",
     expand:'Mở rộng',
     detail:'Chi tiết',
     date:'Date',
@@ -17,6 +17,11 @@ const wordApp = {
     phoneNumber:"0964854447",
     support:"Hỗ trợ :",
     back:"back",
-    auth:'Xác thực'
+    auth:'Xác thực',
+    get:"Nhận",
+    founder: "TungNgtg",
+    optionPartner:"Chọn đối tượng",
+    continous:"Tiếp tục",
+    start:"Bắt đầu"
 }
 export default wordApp;

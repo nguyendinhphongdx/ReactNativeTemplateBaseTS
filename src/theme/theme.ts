@@ -39,7 +39,7 @@ export const theme = {
     medium: '#c026d3',
     low: '#fb923c',
     black: '#000',
-    card: 'rgba(20,20,60,.7)',
+    card: 'rgba(218,227,243,.8)',
     purple: 'rgba(15,23,42,.8)',
     lightBlue800:'rgba(0,40,81,1)',
     darkBlue8000:'rgba(3,32,61,.9)',
@@ -49,6 +49,8 @@ export const theme = {
     coolGray:'#d1d5db',
     white: '#fff',
     purplebackground: 'rgba(15,17,25,1)',
+    blueText: 'rgba(66, 103, 178, 0.91)',
+    orrangeButton: 'rgba(255, 110, 1, 1)'
   },
   fontSize: {
     h1: {fontFamily: 'Roboto-Bold', fontSize: SIZES.h1, lineHeight: 36},
@@ -87,7 +89,7 @@ export const theme = {
 };
 export const backgroundLinear = [
   theme.colors.blue,
-  theme.colors.white,
+  theme.colors.hight,
   theme.colors.blue,
 ];
 export const rotateBg = {

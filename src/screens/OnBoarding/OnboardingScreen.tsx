@@ -8,6 +8,7 @@ import {
   Center,
   Stack,
   Button,
+  VStack,
 } from 'native-base';
 import React, {useEffect, useRef, useState} from 'react';
 import {
@@ -31,42 +32,42 @@ import LoginScreen from '../Login/LoginScreen';
 import AuthOTPScreen from '../OTP';
 import HeaderBack from '../../components/headerback';
 import IconBack from '../../components/headerback/IconBack';
-const OnboardingScreen = ({navigation}:any) => {
+const OnboardingScreen = ({navigation}: any) => {
   const flatListRef = useRef<FlatList>(null);
-  const [state,setState] = useState({
-    index:0
+  const [state, setState] = useState({
+    index: 0,
   });
   const handleNext = () => {
-    if(state.index <2){
-      setState({...state,index:state.index+1})
-    }else{
-      console.log("success");
+    if (state.index < 2) {
+      setState({...state, index: state.index + 1});
+    } else {
+      console.log('success');
     }
-  }
-  const handleBack = ()=>{
-      setState({...state,index:state.index-1})
-  }
+  };
+  const handleBack = () => {
+    setState({...state, index: state.index - 1});
+  };
   const data = [
     {
-      children: <ParterContent onNext={() => handleNext()}/>,
+      children: <ParterContent onNext={() => handleNext()} />,
     },
     {
-      children: <LoginScreen onNext={() => handleNext()}/>,
+      children: <LoginScreen onNext={() => handleNext()} />,
     },
     {
       children: <AuthOTPScreen />,
     },
   ];
-  useEffect(() =>{
-    flatListRef.current?.scrollToIndex({index: state.index})
-  },[state.index])
+  useEffect(() => {
+    flatListRef.current?.scrollToIndex({index: state.index});
+  }, [state.index]);
   return (
     <ViewBackGround>
-      {state.index !==0 && 
-      <View style={{position:'absolute', zIndex:999}}>
-        <IconBack onPress={handleBack}/>
-      </View>
-      }
+      {state.index !== 0 && (
+        <View style={{position: 'absolute', zIndex: 999}}>
+          <IconBack onPress={handleBack} />
+        </View>
+      )}
       <OnBoardFrame>
         <Animated.FlatList
           ref={flatListRef}
@@ -105,39 +106,67 @@ const ButtonPartner = (props: any) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: theme.colors.primary,
-        padding: 30,
+        backgroundColor: theme.colors.white,
+        padding: 18,
         borderRadius: 10,
-        marginVertical: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',
       }}
       onPress={onPress}>
       <Text
         style={{
-          color: 'white',
-          fontSize: 18,
+          color: theme.colors.blueText,
           textAlign: 'center',
+          width: '100%',
           fontWeight: 'bold',
-          fontFamily: 'Roboto-MediumItalic',
+          ...theme.fontSize.h2,
         }}>
         {title}
       </Text>
-      <MaterialIcons name="arrow-forward-ios" size={22} color="#fff" />
     </TouchableOpacity>
   );
 };
 const ParterContent = ({onNext}: any) => {
   return (
-    <View>
-      <ButtonPartner
-        title={wordApp.onlinePartner.toUpperCase()}
-        onPress={onNext}
-      />
-      <ButtonPartner
-        title={wordApp.offlinePartner.toUpperCase()}
-        onPress={onNext}
-      />
+    <View style={{paddingHorizontal: 20}}>
+      <Text
+        style={{
+          color: theme.colors.white,
+          fontWeight: 'bold',
+          marginBottom: 10,
+          ...theme.fontSize.h3,
+        }}>
+        {wordApp.optionPartner}
+      </Text>
+      <VStack space={5}>
+        <ButtonPartner
+          title={wordApp.onlinePartner.toUpperCase()}
+          onPress={onNext}
+        />
+        <ButtonPartner
+          title={wordApp.offlinePartner.toUpperCase()}
+          onPress={onNext}
+        />
+      </VStack>
+      <Button
+       _pressed={{opacity:.7}}
+        style={{
+          marginTop:20,
+          borderRadius: 22,
+          backgroundColor: theme.colors.orrangeButton,
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={{
+            paddingVertical: 5,
+            paddingHorizontal: 30,
+            fontWeight: 'bold',
+            color: theme.colors.white,
+            fontSize:20
+          }}>
+          {wordApp.continous.toUpperCase()}
+        </Text>
+      </Button>
     </View>
   );
 };

@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Flex, HStack, Icon, Pressable, Text, View} from 'native-base';
 import React from 'react';
 import {AntDesign} from '../../assets/icons';
+import { theme } from '../../theme/theme';
 import wordApp from '../../utils/word';
 interface PropsTypes {
   title?: string;
@@ -24,9 +25,9 @@ function IconBack(props: PropsTypes) {
           size={5}
           mr={3}
           ml={3}
-          color="primary.900"
+          color="secondary.50"
         />
-        <Text style={{fontSize:16}}>{wordApp.back}</Text>
+        <Text style={{fontSize:16, color:theme.colors.white}}>{wordApp.back}</Text>
       </HStack>
       </Pressable>
     </Flex>

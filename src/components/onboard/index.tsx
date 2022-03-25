@@ -1,95 +1,92 @@
-import {HStack, Icon, View, Text} from 'native-base';
+import { Box, Image, Text, View } from 'native-base';
 import React from 'react';
-import {ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
-import {SvgXml} from 'react-native-svg';
-
-import ViewBackGround from '../viewbackground';
-import {MaterialIcons, Feather} from '../../assets/icons';
-import {svgs} from '../../assets';
+import { StyleSheet } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { svgs } from '../../assets';
+import { theme } from '../../theme/theme';
+import { windowWidth } from '../../utils/Dimensions';
 import wordApp from '../../utils/word';
-import {windowWidth} from '../../utils/Dimensions';
-import {theme} from '../../theme/theme';
+
 function OnBoardFrame(props: any) {
   return (
     <>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <SvgXml xml={svgs.SvgEyeLogo} height={120} width={120} />
-        <Text
-          style={{
-            fontFamily: 'Roboto-Bold',
-            fontWeight: 'bold',
-            fontSize: 30,
-            lineHeight: 35,
-            color: '#20315f',
-          }}>
-          {wordApp.nameApp}
-        </Text>
-      </View>
-      <ImageBackground
-        source={require('../../assets/icons/png/frame.png')}
+      <View
         style={{
-          width: windowWidth,
-          flex: 3,
-          maxHeight: 430,
           justifyContent: 'center',
+          alignItems: 'center',
+          paddingBottom: 20,
         }}>
-        <Text style={[styles.account, {top: 5}]}>TungNGTg</Text>
-        <View width={windowWidth} height={360}>
-          {props.children}
-        </View>
-        <Text style={[styles.account, {bottom: 5}]}>03/08/2022</Text>
-      </ImageBackground>
-      <View style={{flex: 1, alignItems: 'center'}}>
-        <Text style={[styles.description, {marginTop: 20}]}>
-          {wordApp.slogan}
+        {/* <SvgXml xml={svgs.SvgEyeLogo} height={120} width={120} /> */}
+        <Image source={require("../../assets/icons/png/protection.png")} alt="protection" style={{width:120, height:120}}/>
+        <Text style={styles.nameApp}>{wordApp.nameApp}</Text>
+      </View>
+      <Box
+        style={{
+          position: 'relative',
+          flex: 1,
+        }}>
+        <Text style={[styles.date, {top: -2}]}>
+          {new Date().toLocaleDateString()}
         </Text>
-        <HStack justifyContent={'center'} alignItems={'center'} mt={10}>
-          <View
-            style={{
-              backgroundColor: theme.colors.darkBlue8000,
-              padding: 3,
-              borderTopLeftRadius: 5,
-              borderBottomLeftRadius: 5,
-            }}>
-            <Icon as={<MaterialIcons name="phone" />} size={6} color="white" />
-          </View>
-          <View
-            style={{
-              backgroundColor: theme.colors.darkBlue8000,
-              padding: 4,
-              borderTopRightRadius: 5,
-              borderBottomRightRadius: 5,
-              marginLeft: 3,
-            }}>
-            <Text style={styles.phone}>
-              {wordApp.support} {wordApp.phoneNumber}
-            </Text>
-          </View>
-        </HStack>
+        <Image
+          style={{width: '100%'}}
+          source={require('../../assets/images/png/lineHorizontal.png')}
+          alt={'linehorizontal'}
+        />
+        <View width={windowWidth}>{props.children}</View>
+      </Box>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          position: 'relative',
+          maxHeight:290,
+        }}>
+        <Image
+          style={{width: '100%', height: '100%', position: 'absolute'}}
+          source={require('../../assets/images/png/clound-sign.png')}
+          alt={'clound white'}
+        />
+        <View mb={10} alignItems="center">
+          <Text style={styles.founder}>Founder {wordApp.founder}</Text>
+          <Text style={styles.description} textAlign={'center'}>
+            {wordApp.description}
+          </Text>
+        </View>
       </View>
     </>
   );
 }
 export default OnBoardFrame;
 const styles = StyleSheet.create({
-  account: {
+  date: {
+    fontFamily: 'Roboto-Bold',
+    fontWeight: '700',
+    fontSize: 15,
+    color: theme.colors.white,
+    position: 'absolute',
+    width: '100%',
+    textAlign: 'center',
+  },
+  nameApp: {
     fontFamily: 'Roboto-Bold',
     fontWeight: 'bold',
-    fontSize: 18,
-    color: '#20315f',
-    position: 'absolute',
-    textAlign: 'center',
-    width: '100%',
+    fontSize: 32,
+    lineHeight: 38,
+    color: theme.colors.white,
+  },
+  founder: {
+    ...theme.fontSize.h2,
+    fontWeight: 'bold',
+    color: theme.colors.blueText,
   },
   description: {
-    fontFamily: 'Roboto-Bold',
+    ...theme.fontSize.h4,
     fontWeight: 'bold',
-    fontSize: 18,
-    color: '#20315f',
-  },
-  phone: {
-    ...theme.fontSize.h3,
-    fontSize: 18,
-    color: '#fff',
+    fontStyle: 'italic',
+    color: theme.colors.blueText,
+    maxWidth: 350,
+    marginTop: 10,
   },
 });
